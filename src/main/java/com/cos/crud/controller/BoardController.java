@@ -38,8 +38,18 @@ public class BoardController {
 	//RequestBody가 없으면 x-www-form-urlencode를 파싱
 	//RequestBody가 없으면 text를 파싱
 	//RequestBody가 없으면 multipart데이터 이미지, 영상 - form-data
+
+	
+	
 	@PostMapping("/create")
 	public String create(Board board) {
+		board.setUpdateDate(MyUtils.getCurrentTime());
+		boardService.create(board);
+		return "redirect:list";
+	}
+	
+	@PostMapping("/update")
+	public String update(Board board) {
 		board.setUpdateDate(MyUtils.getCurrentTime());
 		boardService.create(board);
 		return "redirect:list";
